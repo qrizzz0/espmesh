@@ -1,0 +1,22 @@
+{
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "idf.adapterTargetName": "esp32",
+    "idf.customExtraPaths": "c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\xtensa-esp32-elf\\esp-2021r1-8.4.0\\xtensa-esp32-elf\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\xtensa-esp32s2-elf\\esp-2021r1-8.4.0\\xtensa-esp32s2-elf\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\xtensa-esp32s3-elf\\esp-2021r1-8.4.0\\xtensa-esp32s3-elf\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\riscv32-esp-elf\\esp-2021r1-8.4.0\\riscv32-esp-elf\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\esp32ulp-elf\\2.28.51-esp-20191205\\esp32ulp-elf-binutils\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\esp32s2ulp-elf\\2.28.51-esp-20191205\\esp32s2ulp-elf-binutils\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\cmake\\3.16.4\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\openocd-esp32\\v0.10.0-esp32-20210401\\openocd-esp32\\bin;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\ninja\\1.10.2;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\idf-exe\\1.0.1;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\ccache\\3.7;c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\tools\\dfu-util\\0.9\\dfu-util-0.9-win64",
+    "idf.customExtraVars": "{\"OPENOCD_SCRIPTS\":\"c:\\\\Users\\\\Kris\\\\Desktop\\\\ESPProjekt\\\\Toolchain\\\\.espressif\\\\tools\\\\openocd-esp32\\\\v0.10.0-esp32-20210401/openocd-esp32/share/openocd/scripts\",\"IDF_CCACHE_ENABLE\":\"1\"}",
+    "idf.espIdfPathWin": "c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\esp-idf",
+    "idf.openOcdConfigs": "interface/ftdi/esp32_devkitj_v1.cfg,target/esp32.cfg",
+    "idf.pythonBinPathWin": "c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif\\python_env\\idf4.3_py3.8_env\\Scripts\\python.exe",
+    "idf.toolsPathWin": "c:\\Users\\Kris\\Desktop\\ESPProjekt\\Toolchain\\.espressif",
+    "files.associations": {
+        "nvs_flash.h": "c",
+        "sdkconfig.h": "c",
+        "string_view": "c",
+        "array": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "string": "c",
+        "*.inc": "c",
+        "sstream": "c",
+        "esp_system.h": "c"
+    }
+}
