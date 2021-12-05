@@ -20,6 +20,7 @@ static int mesh_layer = 0;
 static int childCount = 0;
 static bool meshActive = false;
 static QueueHandle_t outQueue = NULL;
+static SemaphoreHandle_t sendLock = NULL;
 
 //Function prototypes
 void start_mesh();

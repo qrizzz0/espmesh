@@ -58,6 +58,9 @@ void start_mesh() {
 
     meshActive = true;
 
+    //Before we start any tasks we make sure to create a mutex to lock the send routine
+    sendLock = xSemaphoreCreateMutex();
+
     if (!SETTING_MESH_ROOT) {
         xTaskCreate(resendToRootTask, "resend task", 2048, NULL, 0, NULL);
     }
@@ -93,7 +96,11 @@ void root_broadcast(uint8_t* data, uint32_t length) {
 
         for (int i = 0; i < route_table_length; i++) {
             if (memcmp(routes[i].addr, this_device_mac_addr, 6) != 0) {
-                esp_mesh_send(&routes[i], &root_announce_data, MESH_DATA_P2P, NULL, 0);
+                esp_err_t status = ESP_FAIL;
+                if (xSemaphoreTake(sendLock, portMAX_DELAY) == pdTRUE) {
+                    status = esp_mesh_send(&routes[i], &root_announce_data, MESH_DATA_P2P, NULL, 0);
+                }
+                xSemaphoreGive(sendLock);
             }
         }
 
@@ -113,7 +120,10 @@ void resendToRootTask(void* unused) {
             printf("Resending a pakcage!\n");
             esp_err_t status = 1;
             while (status != ESP_OK) {
-                status = esp_mesh_send(NULL, &currentPackage, MESH_DATA_P2P, NULL, 0); //If this fails we keep trying until it works.
+                if (xSemaphoreTake(sendLock, 0) == pdTRUE) {
+                    status = esp_mesh_send(NULL, &currentPackage, MESH_DATA_P2P, NULL, 0); //If this fails we keep trying until it works.
+                }
+                xSemaphoreGive(sendLock);
             }
             free(currentPackage.data);
         }
@@ -163,7 +173,12 @@ void sendDataToRoot(uint8_t* data, uint32_t length) {
     meshData.data = dataToSend;
     meshData.size = length;
 
-    esp_err_t status = esp_mesh_send(NULL, &meshData, 0, NULL, 0); //Third argument is 0 when sending to root: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp-wifi-mesh.html#mesh-application-examples
+    esp_err_t status = ESP_FAIL;
+    if (xSemaphoreTake(sendLock, portMAX_DELAY) == pdTRUE) {
+        status = esp_mesh_send(NULL, &meshData, 0, NULL, 0); //Third argument is 0 when sending to root: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp-wifi-mesh.html#mesh-application-examples
+    }
+    xSemaphoreGive(sendLock);
+    
     if (status != ESP_OK && outQueue != NULL) {
         xQueueSend(outQueue, (void*) &meshData, 0); //xQueueSend copies, does not reference, even though it is a pointer.
     } else {

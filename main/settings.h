@@ -24,3 +24,4 @@
 static const uint8_t MESH_ID[6] = { 0x77, 0x77, 0x77, 0x77, 0x77, 0x77}; //The ID of the mesh
 
 #endif //SETTINGS_H
+
