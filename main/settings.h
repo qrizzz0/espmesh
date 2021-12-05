@@ -6,16 +6,16 @@
 
 //These options are controlled entirely on the root device. 
 #define SETTING_MESH_ROOT true
-#define WIFI_SSID "Asuna"
+#define WIFI_SSID "xxx"
 #define WIFI_PASSWORD "xxx"
 #define MQTT_ADDRESS "mqtt://192.168.240.142"
-#define MQTT_DATA_TOPIC "/topic/mesh_data"
+#define MQTT_DATA_TOPIC "/topic/mesh"
 
 #define SECONDS_AWAKE 30 //We are awake for 2 minutes before we shut down again. This should be enough time to wake everyone up and sample. Can be changed at will.
 #define SLEEP_TIME 60 //This is our variable to adjust the sleep to be however long we want!
 #define MAX_TOTAL_CHILDREN  255 //The maximum amount of children in the network
 
-//These should be the same for all devices
+//These should be the same for all devices in the mesh
 #define MESH_SLEEP_RETRY_ATTEMPTS 5
 #define MESH_SLEEP_RETRY_WAIT 5 //How many seconds to wait between retries
 #define RX_SIZE             (1500)

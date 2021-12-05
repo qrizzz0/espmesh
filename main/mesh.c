@@ -163,7 +163,7 @@ void sendDataToRoot(uint8_t* data, uint32_t length) {
     meshData.data = dataToSend;
     meshData.size = length;
 
-    esp_err_t status = esp_mesh_send(NULL, &meshData, MESH_DATA_P2P, NULL, 0);
+    esp_err_t status = esp_mesh_send(NULL, &meshData, 0, NULL, 0); //Third argument is 0 when sending to root: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp-wifi-mesh.html#mesh-application-examples
     if (status != ESP_OK && outQueue != NULL) {
         xQueueSend(outQueue, (void*) &meshData, 0); //xQueueSend copies, does not reference, even though it is a pointer.
     } else {
