@@ -247,15 +247,18 @@ void processPacket(uint8_t* data, uint32_t length) {
     }
 
     if (memcmp("DATA:", data, 5) == 0) {
+        char* jsonData = malloc(RX_SIZE); //Buffer to store data to send in
         char* dataPtr = (char*) data + 5;
-        int outValue = strtol(dataPtr, &dataPtr, 10);
-        printf("Received data packet with data: %d   -   ", outValue);
+        int dataValue = strtol(dataPtr, &dataPtr, 10);
+        printf("Received data packet with data: %d   -   ", dataValue);
 
         if (memcmp(" ID:", dataPtr, 4) == 0) { //Might as well keep checking package validity
             dataPtr += 4;
             int sensorID = strtol(dataPtr, NULL, 10);
             printf("And ID: %d\n", sensorID);
-            mqtt_publish(MQTT_DATA_TOPIC, (char*) data);
+            
+            sprintf(jsonData, "{\"DATA\":%i,\"ID\":%i}", dataValue, sensorID);
+            mqtt_publish(MQTT_DATA_TOPIC, jsonData);
         }
     }
 }
