@@ -73,8 +73,8 @@ void start_mesh() {
 
 void stop_mesh() {
     meshActive = false;
-    printf("Waiting for %d seconds before progressing sleep\n", MESH_SLEEP_RETRY_ATTEMPTS * MESH_SLEEP_RETRY_WAIT);
-    vTaskDelay(MESH_SLEEP_RETRY_ATTEMPTS * MESH_SLEEP_RETRY_WAIT * SECOND);
+    printf("Waiting for %d seconds before progressing sleep\n", MESH_SLEEP_RETRY_WAIT * 2);
+    vTaskDelay(MESH_SLEEP_RETRY_WAIT * 2 * SECOND);
 
     ESP_ERROR_CHECK(esp_mesh_set_self_organized(false, false)); //Reset self-organized in mesh just in case
     ESP_ERROR_CHECK(esp_mesh_stop()); //Stop mesh
